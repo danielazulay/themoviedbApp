@@ -11,7 +11,6 @@ import { useParams } from "react-router-dom";
 export function MovieIndex() {
   const { category } = useParams();
 
-
   const movies = useSelector((storeState) => storeState.movieModule.movies);
   const page = useSelector((storeState) => storeState.movieModule.page);
 
@@ -20,7 +19,7 @@ export function MovieIndex() {
   }, [page, category]);
 
   useEffect(() => {
-    nextPage(1)
+    nextPage(1);
   }, [category]);
 
   function handleNextPage() {
@@ -35,14 +34,12 @@ export function MovieIndex() {
 
   return (
     <section className="movie-index">
-
-
-  <button
-    className={`button-next ${1 === page ? 'hidden' : ''}`}
-    onClick={handlePrevPage}
-  >
-    prev
-  </button>
+      <button
+        className={`button-next ${1 === page ? "hidden" : ""}`}
+        onClick={handlePrevPage}
+      >
+        prev
+      </button>
 
       {<MovieList movies={movies} />}
 

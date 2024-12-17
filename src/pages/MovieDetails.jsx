@@ -7,21 +7,18 @@ import { addFavorite } from "../store/actions/movie.actions";
 export function MovieDetails() {
   const { movieId } = useParams();
 
-
   const [movie, setmovie] = useState(null);
 
   useEffect(() => {
-   loadMovie()
+    loadMovie();
   }, [movieId]);
 
   function handelSave() {
-
     addFavorite(movieId);
   }
 
   async function loadMovie() {
     try {
-
       const res = await movieService.getById(movieId);
       setmovie(res);
     } catch (err) {
@@ -88,20 +85,9 @@ export function MovieDetails() {
             <strong>Popularity:</strong> {movie.popularity}
           </li>
         </ul>
-        <p onClick={handelSave}>
-          Add To Favorite
-        </p>
+        <p onClick={handelSave}>Add To Favorite</p>
         <Link to="/">Go back</Link>
       </div>
     </section>
   );
 }
-
-
-
-// export function MovieDetails() {
-//   const params = useParams();
-//   console.log("useParams asas:", params);
-
-//   return <div>Check console for params</div>;
-// }

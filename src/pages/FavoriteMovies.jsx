@@ -18,7 +18,7 @@ export function FavoriteMovies() {
       }
     };
 
-    loadFavoriteData(); // Call the async function
+    loadFavoriteData(); 
   }, [page]);
 
   function handleNextPage() {
@@ -41,7 +41,7 @@ export function FavoriteMovies() {
       </button>
 
       {<MovieList movies={movies} />}
-      
+
       {favoritePages > 1 && page < favoritePages && (
         <button className="button-next" onClick={handleNextPage}>
           next
