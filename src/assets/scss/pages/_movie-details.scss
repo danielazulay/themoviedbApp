@@ -1,0 +1,30 @@
+.movie-details{
+
+    display: flex;
+    flex-direction: row;
+    margin-top: 20vh;
+    gap: 35px;
+    justify-content: flex-start;
+    // margin-top: 150px;
+    height: 75vh;
+    overflow: hidden;
+
+
+
+    .movie-poster{
+   
+
+        .img-cover{
+            width: auto;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+    }
+
+    .movie-description{
+        width: 50% ;
+        min-height: 35%;
+    }
+}

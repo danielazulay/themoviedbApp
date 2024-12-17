@@ -1,0 +1,16 @@
+.movie-index{
+    margin-top: 150px;
+    height: 90hv;
+    display: flex;
+    justify-content: flex-start;
+    .button-next{
+        height: 50px;
+        background-color: rgb(145, 185, 217);
+        color: white;
+        border-radius: 50px;
+        border: none;
+        &.hidden {
+            display: none;
+        }
+    }
+}

@@ -1,0 +1,13 @@
+/*  Basics */
+
+
+/* Pages */
+
+@use "./pages/movie-index";
+@use "./pages/movie-details";
+
+/* Components */
+
+@use  "./cmps/app-header";
+@use "./cmps/preview";
+@use "./cmps/movie-list";

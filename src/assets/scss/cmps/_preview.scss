@@ -1,0 +1,23 @@
+.movie-preview {
+    width: 200px;
+    height: 250px;
+    font-size: 21px;
+    text-align: center; /* Centers text and inline elements within this container */
+
+    .movie-poster {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-top: 0;
+    
+    }
+
+    h2 {
+        color: black;
+        font-size: 18px;
+        display: block; /* Ensures it takes up the full width for centering */
+        text-align: center; /* Centers text within the h2 itself */
+        margin: 0;
+    }
+}

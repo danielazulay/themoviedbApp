@@ -1,0 +1,18 @@
+.movie-list{
+
+    margin-left: 5%;
+    margin-right: 5%;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 70px;
+    row-gap: 70px;
+    margin-bottom: 5%;
+    min-height: 70vh;
+    
+
+    ul{
+        padding: 0;
+    }
+}
