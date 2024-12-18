@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { loadMyFavorite, setPage } from "../store/actions/movie.actions";
+import { loadMovies, setPage } from "../store/actions/movie.actions";
 import { MovieList } from "../cmps/MovieList";
 
 export function FavoriteMovies() {
@@ -10,15 +10,14 @@ export function FavoriteMovies() {
   useEffect(() => {
     const loadFavoriteData = async () => {
       try {
-        const response = await loadMyFavorite(page);
+        const response = await loadMovies(page, "favorite");
         setFavoritePages(response.total_pages);
-        console.log(response.total_pages);
       } catch (error) {
         console.error("Failed to load favorites:", error);
       }
     };
 
-    loadFavoriteData(); 
+    loadFavoriteData();
   }, [page]);
 
   function handlesetPage() {

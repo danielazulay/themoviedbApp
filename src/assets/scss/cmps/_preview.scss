@@ -2,7 +2,7 @@
     width: 200px;
     height: 250px;
     font-size: 21px;
-    text-align: center; /* Centers text and inline elements within this container */
+    text-align: center; 
 
     .movie-poster {
         width: 100%;
@@ -16,8 +16,8 @@
     h2 {
         color: black;
         font-size: 18px;
-        display: block; /* Ensures it takes up the full width for centering */
-        text-align: center; /* Centers text within the h2 itself */
+        display: block;
+        text-align: center; 
         margin: 0;
     }
 }

@@ -1,7 +1,6 @@
 export const movieService = {
   fetchMovies,
   getById,
-  getMyFavorite,
   saveFavorite,
 };
 
@@ -15,7 +14,11 @@ const options = {
 };
 
 async function fetchMovies(page, category) {
-  const url = `https://api.themoviedb.org/3/movie/${category}?language=en-US&page=${page}`;
+  const url =
+    category === "favorite"
+      ? `https://api.themoviedb.org/3/account/21680977/favorite/movies?language=en-US&page=${page}&sort_by=created_at.asc`
+      : `https://api.themoviedb.org/3/movie/${category}?language=en-US&page=${page}`;
+
   const res = await fetch(url, options);
   try {
     if (!res.ok) {
@@ -25,27 +28,11 @@ async function fetchMovies(page, category) {
     const data = await res.json();
     const movies = data.results;
 
-    return movies;
+    const response = category === "favorite" ? data : movies;
+
+    return response;
   } catch (err) {
     console.log("failed to retreive the movies", err);
-  }
-}
-
-async function getById(id) {
-  console.log(id);
-  const url = `https://api.themoviedb.org/3/movie/${id}?language=en-US`;
-  try {
-    const res = await fetch(url, options);
-
-    if (!res.ok) {
-      throw new Error("Failed to fetch data");
-    }
-
-    const movie = await res.json();
-
-    return movie;
-  } catch (err) {
-    console.log("failed to retreive the movie by id", err);
   }
 }
 
@@ -78,9 +65,9 @@ async function saveFavorite(id) {
   }
 }
 
-async function getMyFavorite(page) {
-  const url = `https://api.themoviedb.org/3/account/21680977/favorite/movies?language=en-US&page=${page}&sort_by=created_at.asc`;
-
+async function getById(id) {
+  console.log(id);
+  const url = `https://api.themoviedb.org/3/movie/${id}?language=en-US`;
   try {
     const res = await fetch(url, options);
 
@@ -88,11 +75,10 @@ async function getMyFavorite(page) {
       throw new Error("Failed to fetch data");
     }
 
-    const data = await res.json();
-    // const movies = data.results;
+    const movie = await res.json();
 
-    return data;
+    return movie;
   } catch (err) {
-    console.log("failed to retrive the favorite movies", err);
+    console.log("failed to retreive the movie by id", err);
   }
 }
