@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import {
   loadMovies,
   loadMyFavorite,
-  nextPage,
+  setPage,
 } from "../store/actions/movie.actions";
 import { MovieList } from "../cmps/MovieList";
 import { useParams } from "react-router-dom";
@@ -19,15 +19,15 @@ export function MovieIndex() {
   }, [page, category]);
 
   useEffect(() => {
-    nextPage(1);
+    setPage(1);
   }, [category]);
 
-  function handleNextPage() {
-    nextPage(page + 1);
+  function handlesetPage() {
+    setPage(page + 1);
   }
 
   function handlePrevPage() {
-    nextPage(page - 1);
+    setPage(page - 1);
   }
 
   if (!movies || movies.length === 0) return <div>Loading...</div>;
@@ -43,7 +43,7 @@ export function MovieIndex() {
 
       {<MovieList movies={movies} />}
 
-      <button className="button-next" onClick={handleNextPage}>
+      <button className="button-next" onClick={handlesetPage}>
         next
       </button>
     </section>

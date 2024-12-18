@@ -12,7 +12,7 @@ export async function loadMovies(page, category) {
   }
 }
 
-export function nextPage(page) {
+export function setPage(page) {
   try {
     store.dispatch({ type: SET_PAGE, page });
   } catch (err) {

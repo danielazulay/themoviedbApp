@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { loadMyFavorite, nextPage } from "../store/actions/movie.actions";
+import { loadMyFavorite, setPage } from "../store/actions/movie.actions";
 import { MovieList } from "../cmps/MovieList";
 
 export function FavoriteMovies() {
@@ -21,12 +21,12 @@ export function FavoriteMovies() {
     loadFavoriteData(); 
   }, [page]);
 
-  function handleNextPage() {
-    nextPage(page + 1);
+  function handlesetPage() {
+    setPage(page + 1);
   }
 
   function handlePrevPage() {
-    nextPage(page - 1);
+    setPage(page - 1);
   }
 
   if (!movies || movies.length === 0) return <div>Loading...</div>;
@@ -43,7 +43,7 @@ export function FavoriteMovies() {
       {<MovieList movies={movies} />}
 
       {favoritePages > 1 && page < favoritePages && (
-        <button className="button-next" onClick={handleNextPage}>
+        <button className="button-next" onClick={handlesetPage}>
           next
         </button>
       )}
