@@ -2,31 +2,57 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import {
   loadMovies,
+  setCategory,
   setPage,
 } from "../store/actions/movie.actions";
 import { MovieList } from "../cmps/MovieList";
 import { useParams } from "react-router-dom";
 
 export function MovieIndex() {
-  const { category } = useParams();
 
-  const movies = useSelector((storeState) => storeState.movieModule.movies);
-  const page = useSelector((storeState) => storeState.movieModule.page);
+  const { url } = useParams();
+
+  const [totalPages, setTotalPages] = useState(0);
+
+  const { category, page, movies } = useSelector(
+    (storeState) => storeState.movieModule
+  );
 
   useEffect(() => {
-    loadMovies(page, category);
-  }, [page, category]);
+    const loadData = async () => {
+      try {
+        let response;
 
-  useEffect(() => {
+        if (url !== category) {
+          setCategory(url);
+          handleSetPage();
+           response = await loadMovies(1, url);
+   
+        } else {
+           response = await loadMovies(page, url);
+
+        }
+
+        setTotalPages(response.total_pages);
+      } catch (error) {
+        console.error("Failed to load movies:", error);
+      }
+    };
+    loadData();
+  }, [page, url]);
+
+
+
+  function handleSetPage() {
     setPage(1);
-  }, [category]);
+  }
 
-  function handlesetPage() {
-    setPage(page + 1);
+  function handleNextPage() {
+    if (page < totalPages) setPage(page + 1);
   }
 
   function handlePrevPage() {
-    setPage(page - 1);
+    if (page > 0) setPage(page - 1);
   }
 
   if (!movies || movies.length === 0) return <div>Loading...</div>;
@@ -42,9 +68,11 @@ export function MovieIndex() {
 
       {<MovieList movies={movies} />}
 
-      <button className="button-next" onClick={handlesetPage}>
-        next
-      </button>
+      {page < totalPages && (
+        <button className="button-next" onClick={handleNextPage}>
+          next
+        </button>
+      )}
     </section>
   );
 }

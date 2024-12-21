@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { movieService } from "../services/movie.service";
-import { Link } from "react-router-dom";
 import { addFavorite } from "../store/actions/movie.actions";
 
 export function MovieDetails() {
   const { movieId } = useParams();
+  const navigate = useNavigate();
 
   const [movie, setmovie] = useState(null);
 
@@ -15,6 +15,9 @@ export function MovieDetails() {
 
   function handelSave() {
     addFavorite(movieId);
+  }
+  function handleGoBack() {
+    navigate(-1);
   }
 
   async function loadMovie() {
@@ -86,7 +89,7 @@ export function MovieDetails() {
           </li>
         </ul>
         <p onClick={handelSave}>Add To Favorite</p>
-        <Link to="/">Go back</Link>
+        <p onClick={handleGoBack}>Go back</p>
       </div>
     </section>
   );
