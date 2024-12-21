@@ -48,7 +48,7 @@ async function saveFavorite(id) {
     body: JSON.stringify({ media_type: "movie", media_id: id, favorite: true }),
   };
 
-  const url = `${BASE_URL}/account/21680977/favorite`;
+  const url = `${BASE_URL}/account/${ACCOUNT_ID}/favorite`;
 
   try {
     const res = await fetch(url, header);
